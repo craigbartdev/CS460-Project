@@ -1,0 +1,63 @@
+<!-- template author ben lawson (balawson@bu.edu) -->
+<!-- project by Craig Bartholomew (cbartjr@bu.edu) -->
+<!doctype html>
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+<title>Photoshare</title>
+{% if name %}
+  <h1>Hello {{ name }}!</h1>
+{% elif email %}
+  <h1>Hello {{ email }}</h1>
+{% else %}
+  <h1>Hello</h1>
+{% endif %}
+
+{% if profile %}
+  <img src='data:image/png;base64, {{profile}}' height="128" width="128"/>
+{% else %}
+  <img src='../static/generic.png' height="128" width="128"/>
+{% endif %}
+
+{% if bio %}
+  <p>{{bio}}</p>
+{% endif %}
+
+{% if friends %}
+<h2>Here's your friends</h2>
+    <ul>
+    {% for friend in friends %}
+
+        <li>{{friend[0]}}
+            <a href="/removefriend/{{friend[1]}}">Delete Friend</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if albums %}
+<h2>Here's your albums</h2>
+    <ul>
+    {% for album in albums %}
+        <li><a href="/album/{{album[1]}}">{{album[0]}}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if message is none %}
+  <p>You should <a href='/login'>login!</a></p>
+{% else %}
+  <p> Go to <a href='/profile'>profile?</a></p>
+{% endif %}
+
+<ul>
+<li><a href='/browseall'>Browse all Photos</a></li>
+<li><a href='/browsemine'>Browse my photos</a></li>
+<li><a href="/createalbum">Create a new album</a></li>
+<li><a href='/logout'>Logout</a></li>
+<li><a href="/addfriend">Add Friends</a></li>
+<li><a href='/profilepic'>Update Profile Picture</a></li>
+<li><a href='/bio'>Update Bio</a> </li>
+<li><a href='/'>Home</a></li>
+</ul>
+

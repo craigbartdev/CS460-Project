@@ -1,0 +1,14 @@
+{% if photos %}
+<h2>Here's your photos</h2>
+    <ul>
+    {% for photo in photos %}
+
+        <li><a href="/picture/{{photo[1]}}">{{photo[2]}}</a><br>
+        <img src='data:image/png;base64, {{photo[0]}}'/></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+<a href="/upload/{{aid}}">Upload Photo</a>
+<a href="/profile">Go to Profile</a>
+<a href="/createalbum">Create an Album</a>

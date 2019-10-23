@@ -1,0 +1,56 @@
+{% if photo %}
+<h3>{{photo[1]}}</h3><br>
+<img src='data:image/png;base64, {{photo[0]}}'/><br />
+{% if logged %}
+<a href="/removephoto/{{photo[2]}}">Delete Picture</a><br />
+{% endif %}
+{% else %}
+<p>This photo does not exist</p>
+{% endif %}
+
+{% if tags %}
+<h3>Tags</h3>
+    <ul>
+    {% for tag in tags %}
+        <li>{{ tag[0] }}<br/>
+        {% if logged %}
+        <a href="/removetag/{{photo[2]}}/{{tag[0]}}">Delete Tag</a>
+        {% endif %}
+        </li> 
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if logged %}
+<form method="post" action="/picture/{{photo[2]}}">
+    <label for="tag">Add a tag:</label>
+    <input type="text" name="tag" />
+    <input type="submit" value="Add"/>
+</form>
+{% endif %}
+
+{% if comments %}
+<h3>Comments</h3>
+    <ul>
+        {% for comment in comments %}
+            <li>{{comment[0]}} - {{comment[1]}}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if logged %}
+<h4>Cannot comment on your own photos</h4>
+{% else %}
+<form method="post" action="/picture/{{photo[2]}}">
+    <label for="comment">Add a comment:</label>
+    <input type="text" name="comment" />
+    <input type="submit" value="Add"/>
+</form>
+{% endif %}
+
+<ul> 
+    <li><a href='/logout'>Logout</a></li>
+    <li><a href="/addfriend">Add Friends</a></li>
+    <li><a href='/profile'>Go to profile</a></li>
+    <li><a href='/'>Home</a></li>
+</ul>

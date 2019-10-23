@@ -1,0 +1,37 @@
+{% if mine %}
+<h2>Browse my photos</h2>
+<form method="post" enctype="multipart/form-data" action="/browsemine">
+	<label for="search">Search photos by tag:</label>
+	<input type="text" name="search" required='true'/>
+	<input type="submit" value="Search" />
+</form>
+{% else %}
+<h2>Browse all photos</h2>
+<form method="post" enctype="multipart/form-data" action="/browseall">
+	<label for="search">Search photos by tag:</label>
+	<input type="text" name="search" required='true'/>
+	<input type="submit" value="Search" />
+</form>
+{% endif %}
+
+
+{% if data %}
+<h3>Click on photo title to view</h3>
+<ul>
+	{% for row in data %}
+	<li>
+        <a href="/picture/{{row[1]}}">{{row[2]}}</a><br />
+        <img src='data:image/png;base64, {{row[0]}}' height="128" width="128"/><br />
+	</li>
+	{% endfor %}
+</ul>
+{% else %}
+<p>No photos were found!</p>
+{% endif %}
+
+<ul>
+	<li><a href='/logout'>Logout</a></li>
+	<li><a href='/profile'>Go to profile</a></li>
+	<li><a href='/bio'>Update Bio</a> </li>
+	<li><a href='/'>Home</a></li>
+</ul>

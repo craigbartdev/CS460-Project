@@ -1,0 +1,29 @@
+<!doctype html>
+<p>this is the settings page</p>
+
+<head>
+    <title>Upload a photo!</title>
+</head>
+<body> 
+    {% if profile %}
+        <img src='data:image/png;base64, {{profile}}' height="128" width="128"/>
+    {% else %}
+        <img src='../static/generic.png' height="128" width="128"/>
+    {% endif %} 
+    
+    <div class="title">
+        <h2>Update Profile</h2>
+    </div>
+        <form method="post" enctype="multipart/form-data" action="/profilepic">
+            <label for="photo">Select profile photo:</label>
+            <input type="file" name="photo" required='true'/>
+            <input type="submit" value="Upload" />
+        </form>
+
+        <ul>
+            <li><a href='/bio'>Update Bio</a></li>
+            <li><a href='/logout'>Logout</a></li>
+            <li><a href='/profile'>Profile</a></li>
+            <li><a href='/'>Home</a></li>
+        </ul>
+</body>

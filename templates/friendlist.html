@@ -1,0 +1,25 @@
+<form method="post" enctype="multipart/form-data" action="/addfriend">
+	<label for="users">Search for other friends:</label>
+	<input type="text" name="users" required='true'/>
+	<input type="submit" value="Search" />
+</form>
+
+{% if data %}
+<h3>Click on user to add as friend</h3>
+<ul>
+	{% for row in data %}
+	<li>
+		{{row[1]}}<br />
+		<a href="/added/{{row[0]}}">Add Friend</a>
+	</li>
+	{% endfor %}
+</ul>
+{% else %}
+<p>No users were found!</p>
+{% endif %}
+
+<ul>
+	<li><a href='/logout'>Logout</a></li>
+	<li><a href="/profile">Go to Profile</a></li>
+	<li><a href='/'>Home</a></li>
+</ul>

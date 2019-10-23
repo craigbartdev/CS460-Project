@@ -1,0 +1,21 @@
+{% if photo %}
+Photo has been removed <br />
+<a href="/profile">Back to profile</a>
+{% elif tag %}
+Tag has been removed <br />
+<a href="/picture/{{tag}}">Back to picture</a>
+{% elif album %}
+Album has been removed
+{% elif friend %}
+Friend has been removed
+<a href="/profile">Back to profile</a>
+{% else %}
+This item could not be removed
+{% endif %}
+
+<ul> 
+    <li><a href='/logout'>Logout</a></li>
+    <li><a href="/addfriend">Add Friends</a></li>
+    <li><a href='/profile'>Go to Profile</a></li>
+    <li><a href='/'>Home</a></li>
+</ul>
